@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes; // Importa el trait SoftDeletes
 
 class Cliente extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     // Define la tabla asociada
     protected $table = 'clientes';
@@ -25,14 +26,4 @@ class Cliente extends Model
 
     // Si no estás usando el campo de timestamps 'created_at' y 'updated_at', desactiva el manejo automático de timestamps
     public $timestamps = true;
-
-    public function creator()
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updater()
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
 }
