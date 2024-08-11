@@ -1,5 +1,54 @@
+<div>
+  <form (ngSubmit)="agregarCliente()">
+    <label for="nombres">Nombre:</label>
+    <input type="text" id="nombres" [(ngModel)]="nuevoCliente.nombres" name="nombres" required>
+
+    <label for="apellidos">Apellido:</label>
+    <input type="text" id="apellidos" [(ngModel)]="nuevoCliente.apellidos" name="apellidos" required>
+
+    <label for="empresa">Empresa:</label>
+    <input type="text" id="empresa" [(ngModel)]="nuevoCliente.empresa" name="empresa" required>
+
+    <label for="mail">Mail:</label>
+    <input type="text" id="mail" [(ngModel)]="nuevoCliente.mail" name="mail" required>
+
+    <label for="telefono">Telefono:</label>
+    <input type="text" id="telefono" [(ngModel)]="nuevoCliente.telefono" name="telefono" required>
+
+    <!-- Agrega más campos según sea necesario -->
+
+    <button type="submit">Agregar Cliente</button>
+  </form>
+</div>
+
+<!-- Lista de clientes -->
 <ul>
   <li *ngFor="let cliente of clientes">
     {{ cliente.nombres }} {{ cliente.apellidos }} - {{ cliente.empresa }} - {{ cliente.mail }} - {{ cliente.telefono }}
+    <button (click)="editarCliente(cliente)">Editar</button>
+    <button (click)="eliminarCliente(cliente)">Eliminar</button>
   </li>
 </ul>
+
+<!-- Formulario de edición de cliente -->
+<div *ngIf="clienteAEditar">
+  <h2>Editar Cliente</h2>
+  <form (ngSubmit)="actualizarCliente()">
+    <label for="nombresEdit">Nombre:</label>
+    <input type="text" id="nombresEdit" [(ngModel)]="clienteAEditar.nombres" name="nombres" required>
+
+    <label for="apellidosEdit">Apellido:</label>
+    <input type="text" id="apellidosEdit" [(ngModel)]="clienteAEditar.apellidos" name="apellidos" required>
+
+    <label for="empresaEdit">Empresa:</label>
+    <input type="text" id="empresaEdit" [(ngModel)]="clienteAEditar.empresa" name="empresa" required>
+
+    <label for="mailEdit">Mail:</label>
+    <input type="text" id="mailEdit" [(ngModel)]="clienteAEditar.mail" name="mail" required>
+
+    <label for="telefonoEdit">Telefono:</label>
+    <input type="text" id="telefonoEdit" [(ngModel)]="clienteAEditar.telefono" name="telefono" required>
+
+    <button type="submit">Actualizar Cliente</button>
+  </form>
+</div>
